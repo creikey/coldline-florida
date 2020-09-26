@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Gateway.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30, 13 )
+
+[node name="Gateway" type="Area2D" groups=[
+"gateways",
+]]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -30.0
+margin_top = -13.0
+margin_right = 30.0
+margin_bottom = 13.0
+color = Color( 0.407843, 0.34902, 0.317647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="ExitPoint1" type="Position2D" parent="."]
+position = Vector2( 0, -50 )
+__meta__ = {
+"_gizmo_extents_": 30.0
+}
+
+[node name="ExitPoint2" type="Position2D" parent="."]
+position = Vector2( 0, 50 )
+__meta__ = {
+"_gizmo_extents_": 30.0
+}

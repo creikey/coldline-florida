@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Room.tscn" type="PackedScene" id=2]
+
+[node name="Testing" type="Node2D"]
+position = Vector2( 592, 88 )
+
+[node name="Room" parent="." instance=ExtResource( 2 )]
+
+[node name="Enemy" parent="." instance=ExtResource( 1 )]
+position = Vector2( -144, 136 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 1 )]
+position = Vector2( -144, 64 )

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Bullet.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 16, 4 )
+
+[node name="Bullet" type="Area2D"]
+position = Vector2( 88, 656 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -16.0
+margin_top = -4.0
+margin_right = 16.0
+margin_bottom = 4.0
+color = Color( 1, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
