@@ -61,3 +61,4 @@ func _input(event):
 
 func _on_PhysicsBodyMover_moved_through_vent():
 	vel = Vector2()
+	_jumped = false
