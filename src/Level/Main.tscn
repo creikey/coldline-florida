@@ -1,0 +1,136 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Level/Room/Room.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/UI.gd" type="Script" id=4]
+[ext_resource path="res://Level/Ocean/Ocean.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Effects/Lights/DarknessModulate.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Level/Goal.jpg" type="Texture" id=7]
+[ext_resource path="res://PhysicalBodies/Enemy/Enemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Level/PlaceholderRectangle/PlaceholderRectangle.tscn" type="PackedScene" id=9]
+[ext_resource path="res://PhysicalBodies/Player/Player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Level/Gateway/Gateway.tscn" type="PackedScene" id=12]
+
+[sub_resource type="DynamicFont" id=1]
+size = 72
+font_data = ExtResource( 2 )
+
+[node name="Main" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enable = true
+
+[node name="Sky" type="ColorRect" parent="CanvasLayer"]
+show_behind_parent = true
+margin_left = -3321.0
+margin_top = -2277.0
+margin_right = 9578.0
+margin_bottom = 4127.0
+color = Color( 0.192157, 0.290196, 0.392157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DarknessModulate" parent="CanvasLayer" instance=ExtResource( 6 )]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( 4 )
+player_path = NodePath("../Player")
+
+[node name="RestartLabel" type="Label" parent="UI"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 1 )
+text = "You are dead, press escape to restart..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="Ocean" parent="Level" instance=ExtResource( 5 )]
+
+[node name="Room" parent="Level" instance=ExtResource( 3 )]
+position = Vector2( 488, 536 )
+
+[node name="Gateway" parent="Level/Room" instance=ExtResource( 12 )]
+position = Vector2( -105.953, -201.522 )
+
+[node name="Gateway3" parent="Level/Room" instance=ExtResource( 12 )]
+position = Vector2( -96, 200 )
+
+[node name="Gateway2" parent="Level/Room" instance=ExtResource( 12 )]
+position = Vector2( -497.953, -25.5215 )
+rotation = -1.57079
+
+[node name="Room3" parent="Level" instance=ExtResource( 3 )]
+position = Vector2( 1488, 136 )
+
+[node name="Gateway" parent="Level/Room3" instance=ExtResource( 12 )]
+position = Vector2( -105.953, -201.522 )
+
+[node name="Gateway3" parent="Level/Room3" instance=ExtResource( 12 )]
+position = Vector2( -96, 200 )
+
+[node name="Gateway2" parent="Level/Room3" instance=ExtResource( 12 )]
+position = Vector2( -504, -160 )
+rotation = -1.57079
+
+[node name="Enemy" parent="Level/Room3" instance=ExtResource( 8 )]
+position = Vector2( -312, 144 )
+
+[node name="Enemy2" parent="Level/Room3" instance=ExtResource( 8 )]
+position = Vector2( -216, 24 )
+
+[node name="Enemy3" parent="Level/Room3" instance=ExtResource( 8 )]
+position = Vector2( -80, -16 )
+
+[node name="Room2" parent="Level" instance=ExtResource( 3 )]
+position = Vector2( 488, 136 )
+
+[node name="Gateway" parent="Level/Room2" instance=ExtResource( 12 )]
+position = Vector2( -105.953, -201.522 )
+
+[node name="Gateway3" parent="Level/Room2" instance=ExtResource( 12 )]
+position = Vector2( 448, -40 )
+
+[node name="Gateway2" parent="Level/Room2" instance=ExtResource( 12 )]
+position = Vector2( -497.953, -25.5215 )
+rotation = -1.57079
+
+[node name="Enemy" parent="Level" instance=ExtResource( 8 )]
+position = Vector2( 760, 560 )
+
+[node name="Enemy4" parent="Level" instance=ExtResource( 8 )]
+position = Vector2( 760, 472 )
+
+[node name="Enemy2" parent="Level" instance=ExtResource( 8 )]
+position = Vector2( 120, 264 )
+
+[node name="Enemy3" parent="Level" instance=ExtResource( 8 )]
+position = Vector2( 240, 192 )
+
+[node name="Enemy5" parent="Level" instance=ExtResource( 8 )]
+position = Vector2( 824, 24 )
+
+[node name="Platform" type="StaticBody2D" parent="Level"]
+position = Vector2( 864, 80 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PlaceholderRectangle" parent="Level/Platform" instance=ExtResource( 9 )]
+color = Color( 0, 0, 0, 1 )
+
+[node name="Goal" type="Sprite" parent="Level"]
+position = Vector2( 1432, -248 )
+scale = Vector2( 0.159919, 0.159919 )
+texture = ExtResource( 7 )
+
+[node name="Player" parent="." instance=ExtResource( 10 )]
+position = Vector2( 734.39, 208.371 )
+
+[node name="DarknessModulate" parent="." instance=ExtResource( 6 )]
+
+[editable path="Level/Room"]

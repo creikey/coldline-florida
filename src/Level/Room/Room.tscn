@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Room.gd" type="Script" id=1]
+[ext_resource path="res://Level/Room/Room.gd" type="Script" id=1]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( -495.907, -195.797, -498.026, 198.323, 499.988, 200.442, 496.81, -202.154 )
 
 [node name="Room" type="StaticBody2D"]
 script = ExtResource( 1 )
@@ -15,3 +18,6 @@ z_index = 1
 points = PoolVector2Array( -500, -200, -500, 200, 500, 200, 500, -200, -500, -200 )
 default_color = Color( 0, 0, 0, 1 )
 end_cap_mode = 1
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 1 )

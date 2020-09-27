@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Level/Ocean/Ocean.gd" type="Script" id=1]
+[ext_resource path="res://Level/Ocean/OceanGradient.png" type="Texture" id=2]
+[ext_resource path="res://Level/InWaterArea/InWaterArea.gd" type="Script" id=3]
+[ext_resource path="res://Level/InWaterArea/InWaterArea.tscn" type="PackedScene" id=4]
+
+
+
+[node name="Ocean" type="Sprite"]
+z_index = -1
+z_as_relative = false
+texture = ExtResource( 2 )
+centered = false
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_top = 1070.0
+margin_right = 1920.0
+margin_bottom = 3070.0
+color = Color( 0, 0.231373, 0.321569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InWaterArea" type="Area2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( 960, 2000 )
+script = ExtResource( 3 )
+[connection signal="body_exited" from="InWaterArea" to="InWaterArea" method="_on_InWaterArea_body_exited"]

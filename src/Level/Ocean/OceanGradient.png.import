@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Goal.jpg-5fcc19dd1418f4e2f2aeef0d648787b3.stex"
+path="res://.import/OceanGradient.png-9e2fec9527d14ca10e51e694dad0b711.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Goal.jpg"
-dest_files=[ "res://.import/Goal.jpg-5fcc19dd1418f4e2f2aeef0d648787b3.stex" ]
+source_file="res://Level/Ocean/OceanGradient.png"
+dest_files=[ "res://.import/OceanGradient.png-9e2fec9527d14ca10e51e694dad0b711.stex" ]
 
 [params]
 

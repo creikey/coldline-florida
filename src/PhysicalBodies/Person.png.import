@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/OceanGradient.png-80bee85edeb96aa6150b641fdf83c562.stex"
+path="res://.import/Person.png-1a4dc6fbb8072336abee34cda7ae7197.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://OceanGradient.png"
-dest_files=[ "res://.import/OceanGradient.png-80bee85edeb96aa6150b641fdf83c562.stex" ]
+source_file="res://PhysicalBodies/Person.png"
+dest_files=[ "res://.import/Person.png-1a4dc6fbb8072336abee34cda7ae7197.stex" ]
 
 [params]
 

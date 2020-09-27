@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://PhysicalBodies/Enemy/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://PhysicalBodies/Person.png" type="Texture" id=2]
+[ext_resource path="res://PhysicalBodies/Enemy/Component_EnemyFlipper.gd" type="Script" id=3]
+[ext_resource path="res://VisionCone.svg" type="Texture" id=4]
+[ext_resource path="res://Effects/Lights/SpotLight.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 26.25, 35 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -20.0801, -34.7841, -20.0801, 35.3791, 20.3529, 35.0818, 20.3529, -35.0815 )
+
+[node name="Enemy" type="KinematicBody2D" groups=[
+"enemies",
+]]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="PlayerVisionRaycast" type="RayCast2D" parent="."]
+position = Vector2( 0, -16.872 )
+enabled = true
+cast_to = Vector2( 288, 0 )
+
+[node name="JumpRaycast" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 40 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="FloorRaycast" type="RayCast2D" parent="."]
+position = Vector2( 14, 0 )
+enabled = true
+cast_to = Vector2( 0, 40 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 0.964706, 0.72549, 1 )
+texture = ExtResource( 2 )
+
+[node name="Component_EnemyFlipper" type="Node" parent="."]
+script = ExtResource( 3 )
+_sprite_path = NodePath("../Sprite")
+_vision_light_path = NodePath("../VisionLight")
+_vision_raycast_path = NodePath("../PlayerVisionRaycast")
+_bullet_spawnpoint_path = NodePath("../BulletSpawnPoint")
+_floor_raycast_path = NodePath("../FloorRaycast")
+
+[node name="VisionLight" type="Light2D" parent="."]
+position = Vector2( 25, 0 )
+texture = ExtResource( 4 )
+offset = Vector2( 175, -15 )
+energy = 0.7
+range_layer_min = -5
+range_layer_max = 5
+shadow_enabled = true
+
+[node name="SpotLight" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, -0.353554 )
+scale = Vector2( 0.5, 0.5 )
+energy = 0.5
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+light_mask = 2
+occluder = SubResource( 2 )
+light_mask = 2
+
+[node name="BulletSpawnPoint" type="Position2D" parent="."]
+position = Vector2( 50, 0 )
+
+[node name="BulletPackClearCast" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 50, 0 )
+[connection signal="timeout" from="FireTimer" to="." method="_on_FireTimer_timeout"]

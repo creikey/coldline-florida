@@ -1,10 +1,8 @@
-extends KinematicBody2D
+extends PhysicalBody2D
 
 const GRAVITY: float = 1500.0
 const WATER_LEVEL: float = 635.0
 const BUOYANCY_CONSTANT: float = 300.0 # for underwater buoyancyness
-var accel := Vector2()
-var vel := Vector2()
 var horizontal: float = 1.0
 
 var angry: bool = false setget set_angry
@@ -12,8 +10,6 @@ var dead: bool = false
 var time: float = 0.0
 var my_normal_speed: float = 100.0
 var my_angry_speed: float = 270.0
-
-onready var _jump_raycast: RayCast2D = $JumpRaycast
 
 func set_angry(new_angry):
 	angry = new_angry
@@ -39,11 +35,10 @@ func _physics_process(delta):
 		if angry:
 			accel.y += sin(time)*1500.0
 
-	vel += accel*delta
-	
-	if $SeeingRaycast.is_colliding() or not $FloorRaycast.is_colliding() and $JumpRaycast.is_colliding():
+	if is_on_wall() or (not $FloorRaycast.is_colliding() and is_on_floor()):
 		horizontal *= -1.0
-		scale.x *= -1.0
+		$Component_EnemyFlipper.flipped = horizontal < 0.0
+#		scale.x *= -1.0
 	if $PlayerVisionRaycast.is_colliding() and $PlayerVisionRaycast.get_collider().is_in_group("players"):
 		self.angry = true
 #		$SeeingRaycast.cast_to.x *= -1.0
@@ -51,7 +46,7 @@ func _physics_process(delta):
 	var speed: float = 100.0
 	if angry:
 		speed = 250.0
-		if _jump_raycast.is_colliding() and rand_range(0, 1) < 0.1:
+		if is_on_floor() and rand_range(0, 1) < 0.1:
 			vel.y = -rand_range(600.0, 1200.0)
 #	if $JumpRaycast.is_colliding() and $JumpRaycast.get_collider().is_in_group("enemies"):
 #		vel.x = 0.0 # this will let them stack on top of eachother
@@ -89,8 +84,10 @@ func _on_PhysicsBodyMover_moved_through_vent():
 
 
 func _on_FireTimer_timeout():
-	$FireTimer.wait_time = rand_range(0.3, 0.6)
-	var new_bullet: Node2D = preload("res://Bullet.tscn").instance()
+	if $BulletPackClearCast.is_colliding():
+		return
+	$FireTimer.wait_time = rand_range(0.8, 1.5)
+	var new_bullet: Node2D = preload("res://Effects/Bullet/Bullet.tscn").instance()
 	get_parent().add_child(new_bullet)
 	new_bullet.global_position = $BulletSpawnPoint.global_transform.origin
 	new_bullet.rotation = Vector2(horizontal, 0).angle()
