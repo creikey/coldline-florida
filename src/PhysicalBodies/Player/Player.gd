@@ -4,7 +4,7 @@ const MAX_SPEED: float = 2000.0
 const BUOYANCY_CONSTANT: float = 700.0 # for underwater buoyancyness
 const MOVE_SPEED: float = 300.0
 const JUMP_HEIGHT: float = 200.0
-const JUMP_AIR_TRAVEL: float = 150.0
+const JUMP_AIR_TRAVEL: float = 160.0
 
 const JUMP_GRAVITY: float =  -(-2.0 * JUMP_HEIGHT * pow(MOVE_SPEED, 2.0))/pow(JUMP_AIR_TRAVEL, 2.0)
 const NORMAL_GRAVITY: float = JUMP_GRAVITY*2.5
@@ -28,7 +28,7 @@ func _physics_process(delta):
 	if _is_underwater():
 		accel += -vel.normalized()*2000.0
 		var vertical: float = float(Input.is_action_pressed("g_down")) - float(Input.is_action_pressed("g_up"))
-		accel.y += vertical*1500.0
+		accel.y += vertical*2500.0
 	
 	var horizontal: float = float(Input.is_action_pressed("g_right")) - float(Input.is_action_pressed("g_left"))
 
@@ -49,7 +49,6 @@ func _input(event):
 		return
 	if is_on_floor() and event.is_action_pressed("g_up"):
 		_jumped = true
-		printt("Setting jumped to true", _jumped)
 		vel.y = -JUMP_INITIAL_VEL
 	if event.is_action_released("g_up"):
 		_jumped = false
