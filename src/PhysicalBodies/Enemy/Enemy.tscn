@@ -7,10 +7,10 @@
 [ext_resource path="res://Effects/Lights/SpotLight.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 26.25, 35 )
+extents = Vector2( 24.6893, 35 )
 
 [sub_resource type="OccluderPolygon2D" id=2]
-polygon = PoolVector2Array( -20.0801, -34.7841, -20.0801, 35.3791, 20.3529, 35.0818, 20.3529, -35.0815 )
+polygon = PoolVector2Array( -20.0078, -34.9922, -19.9854, 35.0217, 19.9922, 35, 20.0078, -34.9844 )
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemies",
@@ -26,7 +26,7 @@ __meta__ = {
 [node name="PlayerVisionRaycast" type="RayCast2D" parent="."]
 position = Vector2( 0, -16.872 )
 enabled = true
-cast_to = Vector2( 288, 0 )
+cast_to = Vector2( 265, 0 )
 
 [node name="JumpRaycast" type="RayCast2D" parent="."]
 enabled = true
