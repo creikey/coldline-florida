@@ -66,18 +66,6 @@ func _ready():
 	my_normal_speed = rand_range(90, 170)
 	my_angry_speed = rand_range(230, 280)
 
-func _input(event):
-	return
-	if dead:
-		if event.is_action_pressed("g_restart"):
-			get_tree().reload_current_scene()
-		return
-	elif event.is_action_pressed("g_enter_gateway"):
-		var gateway: Area2D = $GatewayGrabber.get_gateway_in_range()
-		if gateway == null:
-			return
-		$PhysicsBodyMover.move_to_point(gateway.get_target_position(global_transform.origin))
-
 
 func _on_PhysicsBodyMover_moved_through_vent():
 	vel = Vector2()

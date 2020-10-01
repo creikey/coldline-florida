@@ -1,19 +1,19 @@
 extends PhysicalBody2D
 
 const MAX_SPEED: float = 2000.0
-const BUOYANCY_CONSTANT: float = 700.0 # for underwater buoyancyness
-const MOVE_SPEED: float = 300.0
+const BUOYANCY_CONSTANT: float = 900.0 # for underwater buoyancyness
+const MOVE_SPEED: float = 450.0
 const JUMP_HEIGHT: float = 200.0
-const JUMP_AIR_TRAVEL: float = 160.0
+const JUMP_AIR_TRAVEL: float = 200.0
 
 const JUMP_GRAVITY: float =  -(-2.0 * JUMP_HEIGHT * pow(MOVE_SPEED, 2.0))/pow(JUMP_AIR_TRAVEL, 2.0)
-const NORMAL_GRAVITY: float = JUMP_GRAVITY*2.5
+const NORMAL_GRAVITY: float = JUMP_GRAVITY*2.0
 const JUMP_INITIAL_VEL: float = (2.0 * JUMP_HEIGHT * MOVE_SPEED)/JUMP_AIR_TRAVEL
 
 var _jumped: bool = false
 var dead: bool = false
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if dead:
 		return
 	accel = Vector2()
@@ -45,12 +45,11 @@ func _physics_process(delta):
 func _input(event):
 	if dead:
 		if event.is_action_pressed("g_restart"):
-			get_tree().reload_current_scene()
+			var _err = get_tree().reload_current_scene()
 		return
-	if is_on_floor() and event.is_action_pressed("g_up"):
-		_jumped = true
-		vel.y = -JUMP_INITIAL_VEL
-	if event.is_action_released("g_up"):
+	if is_on_floor() and event.is_action_pressed("g_jump"):
+		_jump()
+	if event.is_action_released("g_jump"):
 		_jumped = false
 	elif event.is_action_pressed("g_enter_gateway"):
 		var gateway: Area2D = $GatewayGrabber.get_gateway_in_range()
@@ -58,6 +57,11 @@ func _input(event):
 			return
 		$PhysicsBodyMover.move_to_point(gateway.get_target_position(global_transform.origin))
 
+func _jump():
+	if _jumped:
+		return
+	_jumped = true
+	vel.y = -JUMP_INITIAL_VEL
 
 func _on_PhysicsBodyMover_moved_through_vent():
 	vel = Vector2()

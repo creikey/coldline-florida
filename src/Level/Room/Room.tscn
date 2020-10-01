@@ -1,17 +1,20 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Level/Room/Room.gd" type="Script" id=1]
 
-[sub_resource type="OccluderPolygon2D" id=1]
-polygon = PoolVector2Array( -495.907, -195.797, -498.026, 198.323, 499.988, 200.442, 496.81, -202.154 )
+[sub_resource type="OccluderPolygon2D" id=4]
+polygon = PoolVector2Array( -500, -200, -500, 200, 500, 200, 500, -200, -500, -200 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3, 200 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 500, 3 )
 
 [node name="Room" type="StaticBody2D"]
 script = ExtResource( 1 )
 extents = Vector2( 500, 200 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-build_mode = 1
-polygon = PoolVector2Array( -500, -200, -500, 200, 500, 200, 500, -200, -500, -200 )
+wall_thickness = 3.0
 
 [node name="Line2D" type="Line2D" parent="."]
 z_index = 1
@@ -20,4 +23,20 @@ default_color = Color( 0, 0, 0, 1 )
 end_cap_mode = 1
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource( 1 )
+occluder = SubResource( 4 )
+
+[node name="LeftWall" type="CollisionShape2D" parent="."]
+position = Vector2( -500, 0 )
+shape = SubResource( 2 )
+
+[node name="RightWall" type="CollisionShape2D" parent="."]
+position = Vector2( 500, 0 )
+shape = SubResource( 2 )
+
+[node name="TopWall" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -200 )
+shape = SubResource( 3 )
+
+[node name="BottomWall" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 200 )
+shape = SubResource( 3 )

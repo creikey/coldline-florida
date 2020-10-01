@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Level/Room/Room.tscn" type="PackedScene" id=3]
@@ -15,7 +15,16 @@
 size = 72
 font_data = ExtResource( 2 )
 
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -500, -200, -500, 200, 500, 200, 500, -200, -500, -200 )
+
+[sub_resource type="OccluderPolygon2D" id=3]
+polygon = PoolVector2Array( -500, -200, -500, 200, 500, 200, 500, -200, -500, -200 )
+
 [node name="Main" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -24,11 +33,12 @@ follow_viewport_enable = true
 [node name="Sky" type="ColorRect" parent="CanvasLayer"]
 show_behind_parent = true
 margin_left = -3321.0
-margin_top = -2277.0
+margin_top = -2283.73
 margin_right = 9578.0
-margin_bottom = 4127.0
+margin_bottom = 4120.27
 color = Color( 0.192157, 0.290196, 0.392157, 1 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -44,15 +54,22 @@ margin_bottom = 14.0
 custom_fonts/font = SubResource( 1 )
 text = "You are dead, press escape to restart..."
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="Level" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Ocean" parent="Level" instance=ExtResource( 5 )]
 
 [node name="Room" parent="Level" instance=ExtResource( 3 )]
-position = Vector2( 488, 536 )
+position = Vector2( 518.204, 558.653 )
+
+[node name="LightOccluder2D" parent="Level/Room" index="1"]
+occluder = SubResource( 2 )
 
 [node name="Gateway" parent="Level/Room" instance=ExtResource( 12 )]
 position = Vector2( -105.953, -201.522 )
@@ -64,8 +81,14 @@ position = Vector2( -96, 200 )
 position = Vector2( -497.953, -25.5215 )
 rotation = -1.57079
 
+[node name="Room4" parent="Level" instance=ExtResource( 3 )]
+position = Vector2( -490.872, 408.653 )
+
+[node name="LightOccluder2D" parent="Level/Room4" index="1"]
+occluder = SubResource( 3 )
+
 [node name="Room3" parent="Level" instance=ExtResource( 3 )]
-position = Vector2( 1488, 136 )
+position = Vector2( 1518.2, 158.653 )
 
 [node name="Gateway" parent="Level/Room3" instance=ExtResource( 12 )]
 position = Vector2( -105.953, -201.522 )
@@ -87,7 +110,7 @@ position = Vector2( -216, 24 )
 position = Vector2( -80, -16 )
 
 [node name="Room2" parent="Level" instance=ExtResource( 3 )]
-position = Vector2( 488, 136 )
+position = Vector2( 518.204, 158.653 )
 
 [node name="Gateway" parent="Level/Room2" instance=ExtResource( 12 )]
 position = Vector2( -105.953, -201.522 )
@@ -99,23 +122,11 @@ position = Vector2( 448, -40 )
 position = Vector2( -497.953, -25.5215 )
 rotation = -1.57079
 
-[node name="Enemy" parent="Level" instance=ExtResource( 8 )]
-position = Vector2( 760, 560 )
-
-[node name="Enemy4" parent="Level" instance=ExtResource( 8 )]
-position = Vector2( 760, 472 )
-
-[node name="Enemy2" parent="Level" instance=ExtResource( 8 )]
-position = Vector2( 120, 264 )
-
-[node name="Enemy3" parent="Level" instance=ExtResource( 8 )]
-position = Vector2( 240, 192 )
-
 [node name="Enemy5" parent="Level" instance=ExtResource( 8 )]
-position = Vector2( 824, 24 )
+position = Vector2( 854.204, 46.653 )
 
 [node name="Platform" type="StaticBody2D" parent="Level"]
-position = Vector2( 864, 80 )
+position = Vector2( 894.204, 102.653 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -124,13 +135,16 @@ __meta__ = {
 color = Color( 0, 0, 0, 1 )
 
 [node name="Goal" type="Sprite" parent="Level"]
-position = Vector2( 1432, -248 )
+position = Vector2( 1462.2, -225.347 )
 scale = Vector2( 0.159919, 0.159919 )
 texture = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 10 )]
-position = Vector2( 734.39, 208.371 )
+position = Vector2( -114.195, 481.11 )
 
 [node name="DarknessModulate" parent="." instance=ExtResource( 6 )]
+position = Vector2( 30.204, 22.653 )
 
 [editable path="Level/Room"]
+
+[editable path="Level/Room4"]
