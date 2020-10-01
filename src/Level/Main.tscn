@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Level/Room/Room.tscn" type="PackedScene" id=3]
@@ -20,6 +20,10 @@ polygon = PoolVector2Array( -500, -200, -500, 200, 500, 200, 500, -200, -500, -2
 
 [sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( -500, -200, -500, 200, 500, 200, 500, -200, -500, -200 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 36
+font_data = ExtResource( 2 )
 
 [node name="Main" type="Node2D"]
 __meta__ = {
@@ -82,7 +86,7 @@ position = Vector2( -497.953, -25.5215 )
 rotation = -1.57079
 
 [node name="Room4" parent="Level" instance=ExtResource( 3 )]
-position = Vector2( -490.872, 408.653 )
+position = Vector2( -480, 424 )
 
 [node name="LightOccluder2D" parent="Level/Room4" index="1"]
 occluder = SubResource( 3 )
@@ -138,6 +142,19 @@ color = Color( 0, 0, 0, 1 )
 position = Vector2( 1462.2, -225.347 )
 scale = Vector2( 0.159919, 0.159919 )
 texture = ExtResource( 7 )
+
+[node name="InstructionLabel" type="Label" parent="Level"]
+margin_left = -899.44
+margin_top = 398.808
+margin_right = -554.44
+margin_bottom = 533.808
+custom_fonts/font = SubResource( 4 )
+text = "Arrow keys to move
+Z to jump
+C to go through vents ( which are brown )"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Player" parent="." instance=ExtResource( 10 )]
 position = Vector2( -114.195, 481.11 )
