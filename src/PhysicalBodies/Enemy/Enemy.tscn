@@ -3,7 +3,7 @@
 [ext_resource path="res://PhysicalBodies/Enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://PhysicalBodies/Person.png" type="Texture" id=2]
 [ext_resource path="res://PhysicalBodies/Enemy/Component_EnemyFlipper.gd" type="Script" id=3]
-[ext_resource path="res://VisionCone.svg" type="Texture" id=4]
+[ext_resource path="res://Effects/Lights/VisionLight.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Effects/Lights/SpotLight.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -58,14 +58,7 @@ _vision_raycast_path = NodePath("../PlayerVisionRaycast")
 _bullet_spawnpoint_path = NodePath("../BulletSpawnPoint")
 _floor_raycast_path = NodePath("../FloorRaycast")
 
-[node name="VisionLight" type="Light2D" parent="."]
-position = Vector2( 25, 0 )
-texture = ExtResource( 4 )
-offset = Vector2( 175, -15 )
-energy = 0.7
-range_layer_min = -5
-range_layer_max = 5
-shadow_enabled = true
+[node name="VisionLight" parent="." instance=ExtResource( 4 )]
 
 [node name="SpotLight" parent="." instance=ExtResource( 5 )]
 position = Vector2( 0, -0.353554 )

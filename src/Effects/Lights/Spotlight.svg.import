@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Spotlight.svg-2440107f8e60f1d964b0e6e4b4cd87e3.stex"
+path="res://.import/Spotlight.svg-f5f45a0211f47f42d477143e3b40969e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Spotlight.svg"
-dest_files=[ "res://.import/Spotlight.svg-2440107f8e60f1d964b0e6e4b4cd87e3.stex" ]
+source_file="res://Effects/Lights/Spotlight.svg"
+dest_files=[ "res://.import/Spotlight.svg-f5f45a0211f47f42d477143e3b40969e.stex" ]
 
 [params]
 
