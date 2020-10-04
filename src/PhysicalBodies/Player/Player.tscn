@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://PhysicalBodies/Gateways/PhysicsBodyMover.gd" type="Script" id=1]
 [ext_resource path="res://PhysicalBodies/Gateways/GatewayGrabber.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://PhysicalBodies/Component_Flipper.gd" type="Script" id=4]
 [ext_resource path="res://PhysicalBodies/Person.png" type="Texture" id=5]
 [ext_resource path="res://Effects/Lights/SpotLight.tscn" type="PackedScene" id=6]
+[ext_resource path="res://PhysicalBodies/Player/ItemHolder.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 35 )
@@ -41,5 +42,9 @@ texture = ExtResource( 5 )
 texture_scale = 0.58
 energy = 0.9
 range_item_cull_mask = 3
+
+[node name="ItemHolder" type="Node2D" parent="."]
+position = Vector2( 40, -10 )
+script = ExtResource( 7 )
 [connection signal="moved_through_vent" from="PhysicsBodyMover" to="." method="_on_PhysicsBodyMover_moved_through_vent"]
 [connection signal="tween_all_completed" from="PhysicsBodyMover" to="PhysicsBodyMover" method="_on_PhysicsBodyMover_tween_all_completed"]
