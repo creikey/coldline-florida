@@ -1,13 +1,30 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://PhysicalBodies/Enemy/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://PhysicalBodies/Person.png" type="Texture" id=2]
+[ext_resource path="res://PhysicalBodies/Enemy/Sprite/sailor_walking_animation/sailor_walking_animation1.png" type="Texture" id=2]
 [ext_resource path="res://PhysicalBodies/Enemy/Component_EnemyFlipper.gd" type="Script" id=3]
 [ext_resource path="res://Effects/Lights/VisionLight.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Effects/Lights/SpotLight.tscn" type="PackedScene" id=5]
+[ext_resource path="res://PhysicalBodies/Enemy/Sprite/sailor_walking_animation/sailor_walking_animation6.png" type="Texture" id=6]
+[ext_resource path="res://PhysicalBodies/Enemy/Sprite/sailor_walking_animation/sailor_walking_animation4.png" type="Texture" id=7]
+[ext_resource path="res://PhysicalBodies/Enemy/Sprite/sailor_walking_animation/sailor_walking_animation8.png" type="Texture" id=8]
+[ext_resource path="res://PhysicalBodies/Enemy/Sprite/sailor_walking_animation/sailor_walking_animation9.png" type="Texture" id=9]
+[ext_resource path="res://PhysicalBodies/Enemy/Sprite/sailor_walking_animation/sailor_walking_animation10.png" type="Texture" id=10]
+[ext_resource path="res://PhysicalBodies/Enemy/Sprite/sailor_walking_animation/sailor_walking_animation3.png" type="Texture" id=11]
+[ext_resource path="res://PhysicalBodies/Enemy/Sprite/sailor_walking_animation/sailor_walking_animation2.png" type="Texture" id=12]
+[ext_resource path="res://PhysicalBodies/Enemy/Sprite/sailor_walking_animation/sailor_walking_animation5.png" type="Texture" id=13]
+[ext_resource path="res://PhysicalBodies/Enemy/Sprite/sailor_walking_animation/sailor_walking_animation7.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 24.6893, 35 )
+extents = Vector2( 15.5179, 44.9826 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 7 ), ExtResource( 13 ), ExtResource( 6 ), ExtResource( 14 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "walking",
+"speed": 12.0
+} ]
 
 [sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( -20.0078, -34.9922, -19.9854, 35.0217, 19.9922, 35, 20.0078, -34.9844 )
@@ -18,6 +35,7 @@ polygon = PoolVector2Array( -20.0078, -34.9922, -19.9854, 35.0217, 19.9922, 35, 
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 2.907 )
 shape = SubResource( 1 )
 __meta__ = {
 "_editor_description_": ""
@@ -30,7 +48,7 @@ cast_to = Vector2( 265, 0 )
 
 [node name="JumpRaycast" type="RayCast2D" parent="."]
 enabled = true
-cast_to = Vector2( 0, 40 )
+cast_to = Vector2( 0, 50 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -38,7 +56,7 @@ __meta__ = {
 [node name="FloorRaycast" type="RayCast2D" parent="."]
 position = Vector2( 14, 0 )
 enabled = true
-cast_to = Vector2( 0, 40 )
+cast_to = Vector2( 0, 50 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -46,13 +64,17 @@ __meta__ = {
 [node name="FireTimer" type="Timer" parent="."]
 wait_time = 1.5
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 modulate = Color( 1, 0.964706, 0.72549, 1 )
-texture = ExtResource( 2 )
+scale = Vector2( -2, 2 )
+frames = SubResource( 3 )
+animation = "walking"
+frame = 3
+playing = true
 
 [node name="Component_EnemyFlipper" type="Node" parent="."]
 script = ExtResource( 3 )
-_sprite_path = NodePath("../Sprite")
+_sprite_path = NodePath("../AnimatedSprite")
 _vision_light_path = NodePath("../VisionLight")
 _vision_raycast_path = NodePath("../PlayerVisionRaycast")
 _bullet_spawnpoint_path = NodePath("../BulletSpawnPoint")

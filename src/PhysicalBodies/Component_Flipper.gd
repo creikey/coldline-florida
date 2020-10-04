@@ -4,7 +4,7 @@ class_name Component_Flipper
 
 export (NodePath) var _sprite_path
 
-onready var _sprite: Sprite = get_node(_sprite_path)
+onready var _sprite: AnimatedSprite = get_node(_sprite_path)
 
 var flipped: bool = false setget set_flipped
 

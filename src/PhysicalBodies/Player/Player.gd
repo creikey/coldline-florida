@@ -36,7 +36,10 @@ func _physics_process(_delta):
 		vel = vel.normalized()*MAX_SPEED
 
 	if abs(horizontal) > 0.0:
+		$AnimatedSprite.play("walking")
 		$Component_Flipper.flipped = horizontal < 0.0
+	else:
+		$AnimatedSprite.play("idle")
 	
 	vel.x = horizontal*MOVE_SPEED
 	
