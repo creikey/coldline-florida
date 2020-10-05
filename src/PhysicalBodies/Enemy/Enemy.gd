@@ -6,10 +6,10 @@ const BUOYANCY_CONSTANT: float = 300.0 # for underwater buoyancyness
 var horizontal: float = 1.0
 
 var angry: bool = false setget set_angry
-var dead: bool = false
 var time: float = 0.0
 var my_normal_speed: float = 100.0
 var my_angry_speed: float = 270.0
+var _knocked_out: bool = false
 
 func set_angry(new_angry):
 	angry = new_angry
@@ -23,7 +23,7 @@ func set_angry(new_angry):
 		$FireTimer.stop()
 
 func _physics_process(delta):
-	if dead:
+	if _knocked_out:
 		return
 	time += delta
 	accel = Vector2()
@@ -66,6 +66,12 @@ func _ready():
 	my_normal_speed = rand_range(90, 170)
 	my_angry_speed = rand_range(230, 280)
 
+func knock_out():
+	$AnimatedSprite.play("unconscious")
+	$VisionLight.visible = false
+	$FireTimer.stop()
+	$CollisionShape2D.disabled = true
+	_knocked_out = true
 
 func _on_PhysicsBodyMover_moved_through_vent():
 	vel = Vector2()

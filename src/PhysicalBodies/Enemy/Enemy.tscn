@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://PhysicalBodies/Enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://PhysicalBodies/Enemy/Sprite/sailor_walking_animation/sailor_walking_animation1.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://PhysicalBodies/Enemy/Sprite/sailor_walking_animation/sailor_walking_animation7.png" type="Texture" id=14]
 [ext_resource path="res://Items/ItemHolder.gd" type="Script" id=15]
 [ext_resource path="res://Items/PunchItem/PunchItem.tscn" type="PackedScene" id=16]
+[ext_resource path="res://PhysicalBodies/Enemy/Sprite/placeholder_unconscious.png" type="Texture" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15.5179, 44.9826 )
@@ -26,6 +27,11 @@ animations = [ {
 "loop": true,
 "name": "walking",
 "speed": 12.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "unconscious",
+"speed": 5.0
 } ]
 
 [sub_resource type="OccluderPolygon2D" id=3]
@@ -33,6 +39,7 @@ polygon = PoolVector2Array( -20.0078, -34.9922, -19.9854, 35.0217, 19.9922, 35, 
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemies",
+"knockoutable",
 ]]
 script = ExtResource( 1 )
 

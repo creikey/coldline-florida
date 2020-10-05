@@ -144,13 +144,14 @@ scale = Vector2( 0.159919, 0.159919 )
 texture = ExtResource( 7 )
 
 [node name="InstructionLabel" type="Label" parent="Level"]
-margin_left = -899.44
-margin_top = 398.808
-margin_right = -554.44
-margin_bottom = 533.808
+margin_left = -938.497
+margin_top = 326.993
+margin_right = -7.4975
+margin_bottom = 507.993
 custom_fonts/font = SubResource( 4 )
 text = "Arrow keys to move
 Z to jump
+X to use item/punch, X while holding down to pick up item
 C to go through vents ( which are brown )"
 __meta__ = {
 "_edit_use_anchors_": false
