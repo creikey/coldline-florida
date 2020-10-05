@@ -196,11 +196,11 @@ position = Vector2( -500, 110 )
 rotation = -1.57079
 
 [node name="Enemy" parent="Level/Room6" instance=ExtResource( 8 )]
-position = Vector2( -320, 120 )
+position = Vector2( -330, 220 )
 reverse_on_start = true
 
 [node name="Enemy2" parent="Level/Room6" instance=ExtResource( 8 )]
-position = Vector2( -220, 60 )
+position = Vector2( -220, 240 )
 reverse_on_start = true
 
 [node name="Enemy3" parent="Level/Room6" instance=ExtResource( 8 )]
@@ -228,6 +228,15 @@ __meta__ = {
 }
 
 [node name="PlaceholderRectangle" parent="Level/Room6/Platform" instance=ExtResource( 9 )]
+color = Color( 0.121569, 0.121569, 0.121569, 1 )
+
+[node name="Platform3" type="StaticBody2D" parent="Level/Room6"]
+position = Vector2( -280, 110 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PlaceholderRectangle" parent="Level/Room6/Platform3" instance=ExtResource( 9 )]
 color = Color( 0.121569, 0.121569, 0.121569, 1 )
 
 [node name="Platform2" type="StaticBody2D" parent="Level/Room6"]

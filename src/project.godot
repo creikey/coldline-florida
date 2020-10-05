@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/ItemInHand.gd"
 }, {
+"base": "Node2D",
+"class": "LightHider",
+"language": "GDScript",
+"path": "res://Effects/Lights/LightHider.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "PhysicalBody2D",
 "language": "GDScript",
@@ -33,6 +38,7 @@ _global_script_class_icons={
 "Component_Flipper": "",
 "ItemHolder": "",
 "ItemInHand": "",
+"LightHider": "",
 "PhysicalBody2D": ""
 }
 
