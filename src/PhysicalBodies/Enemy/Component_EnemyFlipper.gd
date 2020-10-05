@@ -11,7 +11,7 @@ onready var _bullet_spawnpoint: Node2D = get_node(_bullet_spawnpoint_path)
 onready var _floor_raycast: RayCast2D = get_node(_floor_raycast_path)
 
 func set_flipped(new_flipped):
-	var flip_float := float(not new_flipped)*2.0 - 1.0
+	var flip_float: float = _get_flip_float(new_flipped)
 	flip_float = sign(flip_float)
 	_vision_light.scale.x = flip_float
 	_vision_light.position.x = abs(_vision_light.position.x) * flip_float

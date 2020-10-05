@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://PhysicalBodies/Gateways/PhysicsBodyMover.gd" type="Script" id=1]
 [ext_resource path="res://PhysicalBodies/Gateways/GatewayGrabber.tscn" type="PackedScene" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://PhysicalBodies/Component_Flipper.gd" type="Script" id=4]
 [ext_resource path="res://PhysicalBodies/Player/Sprite/player_idle.png" type="Texture" id=5]
 [ext_resource path="res://Effects/Lights/SpotLight.tscn" type="PackedScene" id=6]
-[ext_resource path="res://PhysicalBodies/Player/ItemHolder.gd" type="Script" id=7]
+[ext_resource path="res://Items/ItemHolder.gd" type="Script" id=7]
 [ext_resource path="res://PhysicalBodies/Player/Sprite/player_walking_animation/player_walking_animation4.png" type="Texture" id=8]
 [ext_resource path="res://PhysicalBodies/Player/Sprite/player_walking_animation/player_walking_animation10.png" type="Texture" id=9]
 [ext_resource path="res://PhysicalBodies/Player/Sprite/player_walking_animation/player_walking_animation6.png" type="Texture" id=10]
@@ -17,6 +17,7 @@
 [ext_resource path="res://PhysicalBodies/Player/Sprite/player_walking_animation/player_walking_animation5.png" type="Texture" id=15]
 [ext_resource path="res://PhysicalBodies/Player/Sprite/player_walking_animation/player_walking_animation9.png" type="Texture" id=16]
 [ext_resource path="res://PhysicalBodies/Player/Sprite/player_walking_animation/player_walking_animation3.png" type="Texture" id=17]
+[ext_resource path="res://Items/PunchItem/PunchItem.tscn" type="PackedScene" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16.0306, 42.3671 )
@@ -59,12 +60,13 @@ script = ExtResource( 1 )
 [node name="Component_Flipper" type="Node" parent="."]
 script = ExtResource( 4 )
 _sprite_path = NodePath("../AnimatedSprite")
+_item_holder_path = NodePath("../ItemHolder")
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( -2, 2 )
 frames = SubResource( 2 )
 animation = "walking"
-frame = 2
+frame = 6
 playing = true
 
 [node name="SpotLight" parent="." instance=ExtResource( 6 )]
@@ -73,7 +75,8 @@ energy = 0.9
 range_item_cull_mask = 3
 
 [node name="ItemHolder" type="Node2D" parent="."]
-position = Vector2( 40, -10 )
+position = Vector2( 23.55, -20 )
 script = ExtResource( 7 )
+_default_item_pack = ExtResource( 18 )
 [connection signal="moved_through_vent" from="PhysicsBodyMover" to="." method="_on_PhysicsBodyMover_moved_through_vent"]
 [connection signal="tween_all_completed" from="PhysicsBodyMover" to="PhysicsBodyMover" method="_on_PhysicsBodyMover_tween_all_completed"]

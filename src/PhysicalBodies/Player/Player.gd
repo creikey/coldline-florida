@@ -54,6 +54,8 @@ func _input(event):
 		_jump()
 	if event.is_action_released("g_jump"):
 		_jumped = false
+	elif event.is_action_pressed("g_use_item"):
+		$ItemHolder.use_item()
 	elif event.is_action_pressed("g_enter_gateway"):
 		var gateway: Area2D = $GatewayGrabber.get_gateway_in_range()
 		if gateway == null:
