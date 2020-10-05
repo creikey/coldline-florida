@@ -36,9 +36,11 @@ animations = [ {
 } ]
 
 [node name="Player" type="KinematicBody2D" groups=[
+"angers_enemy",
 "players",
 ]]
 position = Vector2( 0, -0.132435 )
+collision_layer = 9
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
@@ -66,7 +68,7 @@ _item_holder_path = NodePath("../ItemHolder")
 scale = Vector2( -2, 2 )
 frames = SubResource( 2 )
 animation = "walking"
-frame = 6
+frame = 4
 playing = true
 
 [node name="SpotLight" parent="." instance=ExtResource( 6 )]

@@ -1,6 +1,6 @@
 extends PhysicalBody2D
 
-const MAX_SPEED: float = 2000.0
+const MAX_SPEED: float = 1500.0
 const BUOYANCY_CONSTANT: float = 900.0 # for underwater buoyancyness
 const MOVE_SPEED: float = 450.0
 const JUMP_HEIGHT: float = 200.0
@@ -26,7 +26,7 @@ func _physics_process(_delta):
 	accel += Vector2(0, -sqrt(max(0, distance_to_water_surface))*BUOYANCY_CONSTANT)
 
 	if _is_underwater():
-		accel += -vel.normalized()*2000.0
+		accel += -vel.normalized()*2500.0
 		var vertical: float = float(Input.is_action_pressed("g_down")) - float(Input.is_action_pressed("g_up"))
 		accel.y += vertical*2500.0
 	

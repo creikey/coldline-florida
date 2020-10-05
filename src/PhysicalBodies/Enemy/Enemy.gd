@@ -1,5 +1,7 @@
 extends PhysicalBody2D
 
+export var reverse_on_start: bool = false
+
 const GRAVITY: float = 1500.0
 const WATER_LEVEL: float = 635.0
 const BUOYANCY_CONSTANT: float = 300.0 # for underwater buoyancyness
@@ -39,7 +41,7 @@ func _physics_process(delta):
 		horizontal *= -1.0
 		$Component_EnemyFlipper.flipped = horizontal < 0.0
 #		scale.x *= -1.0
-	if $PlayerVisionRaycast.is_colliding() and $PlayerVisionRaycast.get_collider().is_in_group("players"):
+	if $PlayerVisionRaycast.is_colliding() and $PlayerVisionRaycast.get_collider().is_in_group("angers_enemy"): # no check for collider, layer angers_enemy always angers
 		self.angry = true
 #		$SeeingRaycast.cast_to.x *= -1.0
 #	var horizontal: float = float(Input.is_action_pressed("g_right")) - float(Input.is_action_pressed("g_left"))
@@ -63,6 +65,8 @@ func _physics_process(delta):
 
 func _ready():
 	randomize()
+	if reverse_on_start:
+		$Component_EnemyFlipper.flipped = true
 	my_normal_speed = rand_range(90, 170)
 	my_angry_speed = rand_range(230, 280)
 
@@ -71,6 +75,7 @@ func knock_out():
 	$VisionLight.visible = false
 	$FireTimer.stop()
 	$CollisionShape2D.disabled = true
+	$DeadBodyFlag/CollisionShape2D.disabled = false
 	_knocked_out = true
 
 func _on_PhysicsBodyMover_moved_through_vent():

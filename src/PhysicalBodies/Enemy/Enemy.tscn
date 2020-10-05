@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://PhysicalBodies/Enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://PhysicalBodies/Enemy/Sprite/sailor_walking_animation/sailor_walking_animation1.png" type="Texture" id=2]
@@ -37,6 +37,9 @@ animations = [ {
 [sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( -20.0078, -34.9922, -19.9854, 35.0217, 19.9922, 35, 20.0078, -34.9844 )
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 13.3264, 55.4808 )
+
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemies",
 "knockoutable",
@@ -54,6 +57,8 @@ __meta__ = {
 position = Vector2( 0, -16.872 )
 enabled = true
 cast_to = Vector2( 265, 0 )
+collision_mask = 8
+collide_with_areas = true
 
 [node name="JumpRaycast" type="RayCast2D" parent="."]
 enabled = true
@@ -76,7 +81,7 @@ modulate = Color( 1, 0.964706, 0.72549, 1 )
 scale = Vector2( -2, 2 )
 frames = SubResource( 2 )
 animation = "walking"
-frame = 1
+frame = 3
 playing = true
 
 [node name="Component_EnemyFlipper" type="Node" parent="."]
@@ -114,4 +119,14 @@ __meta__ = {
 "_editor_description_": ""
 }
 _default_item_pack = ExtResource( 16 )
+
+[node name="DeadBodyFlag" type="Area2D" parent="." groups=[
+"angers_enemy",
+]]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadBodyFlag"]
+shape = SubResource( 4 )
+disabled = true
 [connection signal="timeout" from="FireTimer" to="." method="_on_FireTimer_timeout"]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=21 format=2]
 
+[ext_resource path="res://Level/InWaterArea/InWaterArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Level/Room/Room.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/UI.gd" type="Script" id=4]
@@ -18,12 +19,27 @@ font_data = ExtResource( 2 )
 [sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( -500, -200, -500, 200, 500, 200, 500, -200, -500, -200 )
 
-[sub_resource type="OccluderPolygon2D" id=3]
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 3, 200 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 500, 3 )
+
+[sub_resource type="OccluderPolygon2D" id=5]
 polygon = PoolVector2Array( -500, -200, -500, 200, 500, 200, 500, -200, -500, -200 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 3, 200 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 500, 3 )
+
+[sub_resource type="DynamicFont" id=8]
 size = 36
 font_data = ExtResource( 2 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 500, 70 )
 
 [node name="Main" type="Node2D"]
 __meta__ = {
@@ -70,13 +86,19 @@ __meta__ = {
 [node name="Ocean" parent="Level" instance=ExtResource( 5 )]
 
 [node name="Room" parent="Level" instance=ExtResource( 3 )]
-position = Vector2( 518.204, 558.653 )
+position = Vector2( 530, 510 )
 
 [node name="LightOccluder2D" parent="Level/Room" index="1"]
 occluder = SubResource( 2 )
 
-[node name="Gateway" parent="Level/Room" instance=ExtResource( 12 )]
-position = Vector2( -105.953, -201.522 )
+[node name="LeftWall" parent="Level/Room" index="2"]
+shape = SubResource( 3 )
+
+[node name="RightWall" parent="Level/Room" index="3"]
+shape = SubResource( 3 )
+
+[node name="TopWall" parent="Level/Room" index="4"]
+shape = SubResource( 4 )
 
 [node name="Gateway3" parent="Level/Room" instance=ExtResource( 12 )]
 position = Vector2( -96, 200 )
@@ -86,13 +108,36 @@ position = Vector2( -497.953, -25.5215 )
 rotation = -1.57079
 
 [node name="Room4" parent="Level" instance=ExtResource( 3 )]
-position = Vector2( -480, 424 )
+position = Vector2( -470, 410 )
 
 [node name="LightOccluder2D" parent="Level/Room4" index="1"]
-occluder = SubResource( 3 )
+occluder = SubResource( 5 )
+
+[node name="LeftWall" parent="Level/Room4" index="2"]
+shape = SubResource( 6 )
+
+[node name="RightWall" parent="Level/Room4" index="3"]
+shape = SubResource( 6 )
+
+[node name="TopWall" parent="Level/Room4" index="4"]
+shape = SubResource( 7 )
+
+[node name="InstructionLabel" type="Label" parent="Level/Room4"]
+margin_left = -461.167
+margin_top = -97.0075
+margin_right = 469.833
+margin_bottom = 83.9925
+custom_fonts/font = SubResource( 8 )
+text = "Arrow keys to move
+Z to jump
+X to use item/punch, X while holding down to pick up item
+C to go through vents ( which are brown )"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Room3" parent="Level" instance=ExtResource( 3 )]
-position = Vector2( 1518.2, 158.653 )
+position = Vector2( 610, -70 )
 
 [node name="Gateway" parent="Level/Room3" instance=ExtResource( 12 )]
 position = Vector2( -105.953, -201.522 )
@@ -113,52 +158,183 @@ position = Vector2( -216, 24 )
 [node name="Enemy3" parent="Level/Room3" instance=ExtResource( 8 )]
 position = Vector2( -80, -16 )
 
+[node name="Room5" parent="Level" instance=ExtResource( 3 )]
+position = Vector2( 1610, -190 )
+
+[node name="Gateway" parent="Level/Room5" instance=ExtResource( 12 )]
+position = Vector2( -105.953, -201.522 )
+
+[node name="Gateway3" parent="Level/Room5" instance=ExtResource( 12 )]
+position = Vector2( -96, 200 )
+
+[node name="Gateway2" parent="Level/Room5" instance=ExtResource( 12 )]
+position = Vector2( -500, 10 )
+rotation = -1.57079
+
+[node name="Enemy" parent="Level/Room5" instance=ExtResource( 8 )]
+position = Vector2( -320, 120 )
+reverse_on_start = true
+
+[node name="Enemy2" parent="Level/Room5" instance=ExtResource( 8 )]
+position = Vector2( -210, 20 )
+
+[node name="Enemy3" parent="Level/Room5" instance=ExtResource( 8 )]
+position = Vector2( -80, -16 )
+
+[node name="Room6" parent="Level" instance=ExtResource( 3 )]
+position = Vector2( 2610, -290 )
+extents = Vector2( 500, 300 )
+
+[node name="Gateway" parent="Level/Room6" instance=ExtResource( 12 )]
+position = Vector2( -280, -300 )
+
+[node name="Gateway3" parent="Level/Room6" instance=ExtResource( 12 )]
+position = Vector2( -430, 300 )
+
+[node name="Gateway2" parent="Level/Room6" instance=ExtResource( 12 )]
+position = Vector2( -500, 110 )
+rotation = -1.57079
+
+[node name="Enemy" parent="Level/Room6" instance=ExtResource( 8 )]
+position = Vector2( -320, 120 )
+reverse_on_start = true
+
+[node name="Enemy2" parent="Level/Room6" instance=ExtResource( 8 )]
+position = Vector2( -220, 60 )
+reverse_on_start = true
+
+[node name="Enemy3" parent="Level/Room6" instance=ExtResource( 8 )]
+position = Vector2( 0, 210 )
+
+[node name="Enemy4" parent="Level/Room6" instance=ExtResource( 8 )]
+position = Vector2( 200, 210 )
+reverse_on_start = true
+
+[node name="Enemy5" parent="Level/Room6" instance=ExtResource( 8 )]
+position = Vector2( 270, -60 )
+reverse_on_start = true
+
+[node name="Enemy6" parent="Level/Room6" instance=ExtResource( 8 )]
+position = Vector2( -70, -220 )
+reverse_on_start = true
+
+[node name="Enemy7" parent="Level/Room6" instance=ExtResource( 8 )]
+position = Vector2( -400, -220 )
+
+[node name="Platform" type="StaticBody2D" parent="Level/Room6"]
+position = Vector2( 240, 30 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PlaceholderRectangle" parent="Level/Room6/Platform" instance=ExtResource( 9 )]
+color = Color( 0.121569, 0.121569, 0.121569, 1 )
+
+[node name="Platform2" type="StaticBody2D" parent="Level/Room6"]
+position = Vector2( -230, -140 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PlaceholderRectangle" parent="Level/Room6/Platform2" instance=ExtResource( 9 )]
+color = Color( 0.121569, 0.121569, 0.121569, 1 )
+
+[node name="Room7" parent="Level" instance=ExtResource( 3 )]
+position = Vector2( 2610, -890 )
+extents = Vector2( 500, 300 )
+
+[node name="InWaterArea" parent="Level/Room7" instance=ExtResource( 1 )]
+position = Vector2( 0, 230 )
+
+[node name="CollisionShape2D" parent="Level/Room7/InWaterArea" index="0"]
+shape = SubResource( 9 )
+
+[node name="ColorRect" type="ColorRect" parent="Level/Room7/InWaterArea"]
+margin_left = -500.0
+margin_top = -70.0
+margin_right = 500.0
+margin_bottom = 70.0
+color = Color( 0, 0.623529, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gateway" parent="Level/Room7" instance=ExtResource( 12 )]
+position = Vector2( 10, -300 )
+
+[node name="Enemy" parent="Level/Room7" instance=ExtResource( 8 )]
+position = Vector2( -320, 120 )
+
+[node name="Enemy2" parent="Level/Room7" instance=ExtResource( 8 )]
+position = Vector2( -220, 60 )
+
+[node name="Enemy4" parent="Level/Room7" instance=ExtResource( 8 )]
+position = Vector2( 200, 210 )
+reverse_on_start = true
+
+[node name="Enemy5" parent="Level/Room7" instance=ExtResource( 8 )]
+position = Vector2( 270, -60 )
+reverse_on_start = true
+
+[node name="Enemy7" parent="Level/Room7" instance=ExtResource( 8 )]
+position = Vector2( -320, -220 )
+
+[node name="Platform" type="StaticBody2D" parent="Level/Room7"]
+position = Vector2( 310, 30 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PlaceholderRectangle" parent="Level/Room7/Platform" instance=ExtResource( 9 )]
+color = Color( 0.121569, 0.121569, 0.121569, 1 )
+
+[node name="Platform2" type="StaticBody2D" parent="Level/Room7"]
+position = Vector2( -230, -140 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PlaceholderRectangle" parent="Level/Room7/Platform2" instance=ExtResource( 9 )]
+color = Color( 0.121569, 0.121569, 0.121569, 1 )
+
 [node name="Room2" parent="Level" instance=ExtResource( 3 )]
-position = Vector2( 518.204, 158.653 )
+position = Vector2( 1730, 350 )
 
 [node name="Gateway" parent="Level/Room2" instance=ExtResource( 12 )]
 position = Vector2( -105.953, -201.522 )
 
 [node name="Gateway3" parent="Level/Room2" instance=ExtResource( 12 )]
-position = Vector2( 448, -40 )
+position = Vector2( 290, -190 )
 
 [node name="Gateway2" parent="Level/Room2" instance=ExtResource( 12 )]
 position = Vector2( -497.953, -25.5215 )
 rotation = -1.57079
 
-[node name="Enemy5" parent="Level" instance=ExtResource( 8 )]
-position = Vector2( 854.204, 46.653 )
+[node name="Enemy5" parent="Level/Room2" instance=ExtResource( 8 )]
+position = Vector2( 0, -40 )
 
-[node name="Platform" type="StaticBody2D" parent="Level"]
-position = Vector2( 894.204, 102.653 )
+[node name="Enemy6" parent="Level/Room2" instance=ExtResource( 8 )]
+position = Vector2( 10, 140 )
+
+[node name="Platform" type="StaticBody2D" parent="Level/Room2"]
+position = Vector2( 10.0001, 40 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="PlaceholderRectangle" parent="Level/Platform" instance=ExtResource( 9 )]
+[node name="PlaceholderRectangle" parent="Level/Room2/Platform" instance=ExtResource( 9 )]
 color = Color( 0, 0, 0, 1 )
 
 [node name="Goal" type="Sprite" parent="Level"]
-position = Vector2( 1462.2, -225.347 )
+position = Vector2( 2630, -1360 )
 scale = Vector2( 0.159919, 0.159919 )
 texture = ExtResource( 7 )
 
-[node name="InstructionLabel" type="Label" parent="Level"]
-margin_left = -938.497
-margin_top = 326.993
-margin_right = -7.4975
-margin_bottom = 507.993
-custom_fonts/font = SubResource( 4 )
-text = "Arrow keys to move
-Z to jump
-X to use item/punch, X while holding down to pick up item
-C to go through vents ( which are brown )"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Enemy6" parent="Level" instance=ExtResource( 8 )]
+position = Vector2( 590, 200 )
 
 [node name="Player" parent="." instance=ExtResource( 10 )]
-position = Vector2( -114.195, 481.11 )
+position = Vector2( 2180, -890 )
 
 [node name="DarknessModulate" parent="." instance=ExtResource( 6 )]
 position = Vector2( 30.204, 22.653 )
@@ -166,3 +342,5 @@ position = Vector2( 30.204, 22.653 )
 [editable path="Level/Room"]
 
 [editable path="Level/Room4"]
+
+[editable path="Level/Room7/InWaterArea"]

@@ -19,6 +19,11 @@ func set_extents(new_extents):
 		line.points[4] = line.points[0]
 		
 		# the shapes are shared among parallel walls, so only needs to edit one
+		$LeftWall.shape = $LeftWall.shape.duplicate(true)
+		$RightWall.shape = $LeftWall.shape
+		$TopWall.shape = $TopWall.shape.duplicate(true)
+		$BottomWall.shape = $BottomWall.shape
+		
 		$LeftWall.shape.extents.y = extents.y
 		$LeftWall.shape.extents.x = wall_thickness
 		$LeftWall.position = Vector2(-extents.x, 0)
